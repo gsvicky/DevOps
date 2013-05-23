@@ -1,30 +1,45 @@
-# Install Apache Tomcat
+# Custom settings
+##############################################################################
+export PS1='\[\033[02;32m\]\u@\H:\[\033[02;36m\]\w\$\[\033[00m\] '
+cd /etc/yum.repos.d/
+mkdir /opt/temp/
 
-yum install java-1.6.0-openjdk-devel -y
+# Install Virtualbox
+##############################################################################
+wget http://download.virtualbox.org/virtualbox/rpm/el/virtualbox.repo
+yum -y install VirtualBox-4.2
 
-sh -c 'echo export JAVA_HOME=/usr/lib/jvm/java-1.6.0-openjdk-1.6.0.0.x86_64 > /etc/profile.d/java.sh'
+# Install Vagrant
+##############################################################################
+cd /opt/temp/
+wget http://files.vagrantup.com/packages/7e400d00a3c5a0fdf2809c8b5001a035415a607b/vagrant_1.2.2_x86_64.rpm
+rpm -Uvhe  vagrant_1.2.2_x86_64.rpm
 
-chmod +x /etc/profile.d/java.sh
+# Install Git & pull code
+##############################################################################
+yum -y install git
+cd /usr/local/src/
+git clone https://github.com/gsvicky/DevOps.git
 
-source /etc/profile.d/java.sh 
+# Install & configure Chef-client
+##############################################################################
+true && curl -L https://www.opscode.com/chef/install.sh | bash
+git clone git://github.com/opscode/chef-repo /usr/local/src/DevOps/chef_getting_started/chef-repo
+mkdir -p /usr/local/src/DevOps/chef_getting_started/chef-repo/.chef
+cp /vagrant/knife.rb /usr/local/src/DevOps/chef_getting_started/chef-repo/.chef
+cp /vagrant/adeptize-validator.pem /usr/local/src/DevOps/chef_getting_started/chef-repo/.chef
+cp /vagrant/gsvicky.pem /usr/local/src/DevOps/chef_getting_started/chef-repo/.chef
 
-wget http://apache.mesi.com.ar/tomcat/tomcat-7/v7.0.40/bin/apache-tomcat-7.0.40.tar.gz
+#Add .chef to the .gitignore file to prevent uploading the contents of the .chef folder to github.
+##############################################################################
+echo '.chef' >> /usr/local/src/DevOps/chef_getting_started/chef-repo/.gitignore
 
-tar xvzf apache-tomcat-7.0.40.tar.gz -C /opt 
+# For convenience, create a link to the src folder in home
+##############################################################################
+ln -s /usr/local/src/DevOps/chef_getting_started/chef-repo ~/devfolder
 
-sh -c 'echo export CATALINA_HOME=/opt/apache-tomcat-7.0.40 > /etc/profile.d/tomcat.sh'
+# Cleanup
+##############################################################################
+rm -rf /opt/temp/
 
-chmod +x /etc/profile.d/tomcat.sh
-
-source /etc/profile.d/tomcat.sh 
-
-$CATALINA_HOME /bin/startup.sh 
-
-service iptables stop
-
-chkconfig iptables off 
-
-/opt/apache-tomcat-7.0.40/bin/catalina.sh start
-
-cp /vagrant/sample.war $CATALINA_HOME/webapps/
 
