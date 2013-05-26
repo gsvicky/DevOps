@@ -18,6 +18,13 @@ rpm -Uvhe  vagrant_1.2.2_x86_64.rpm
 # Install Git & pull code
 ##############################################################################
 yum -y install git
+rpm -i 'http://packages.sw.be/rpmforge-release/rpmforge-release-0.5.2-2.el6.rf.x86_64.rpm'
+rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt
+sed -i 's/enabled = 0/enabled = 1/g' /etc/yum.repos.d/rpmforge.repo
+yum -y update git
+sed -i 's/enabled = 1/enabled = 0/g' /etc/yum.repos.d/rpmforge.repo
+yum clean all
+
 git config --global user.name "Victor Gajendran"
 git config --global user.email "gsvicky@gmail.com"
 
@@ -41,7 +48,11 @@ ln -s /usr/local/src/DevOps/configManagement/chef-repo ~/chefdir
 ##############################################################################
 rm -rf /opt/temp/
 
-
 ##############################################################################
-# WHEN DONE SETUP GIT SSH KEY https://help.github.com/articles/generating-ssh-keys
+# WHEN VM IS SETUP GIT SSH KEY https://help.github.com/articles/generating-ssh-keys
+#### ssh-keygen -t rsa -C "gsvicky@gmail.com"
+#### [Enter], pass1!
+#### cp  -f ~/.ssh/id_rsa.pub /vagrant/ 
+#### Add key in Github.com
+#### ssh -T git@github.com
 ##############################################################################
