@@ -1,7 +1,9 @@
 # Custom settings
 ##############################################################################
 echo "export PS1='\[\033[02;32m\]\u@\H:\[\033[02;36m\]\w\$\[\033[00m\] '" >> ~/.bash_profile
+echo "alias ll='ls -al | more'" >> ~/.bash_profile
 cd /etc/yum.repos.d/
+yum -y install traceroute
 mkdir /opt/temp/
 
 # Install Virtualbox
