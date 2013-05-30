@@ -8,6 +8,7 @@ Vagrant.configure("2") do |config|
     devops.vm.provision :shell, :path => "bootstrap-devops.sh"
     devops.vm.hostname = "devops"
     devops.vm.usable_port_range = 2222..2222
+    devops.vm.network :private_network, ip: "192.168.20.200"
   end
 
   config.vm.define :node1 do |node1|
@@ -15,6 +16,7 @@ Vagrant.configure("2") do |config|
     node1.vm.provision :shell, :path => "bootstrap-node.sh"
     node1.vm.hostname = "node1"
     node1.vm.usable_port_range = 2201..2201
+    node1.vm.network :private_network, ip: "192.168.20.201"
   end
 
   config.vm.define :node2 do |node2|
@@ -22,6 +24,8 @@ Vagrant.configure("2") do |config|
     node2.vm.provision :shell, :path => "bootstrap-node.sh"
     node2.vm.hostname = "node2"
     node2.vm.usable_port_range = 2202..2202
+    node2.vm.network :private_network, ip: "192.168.20.202"
+    #node2.vm.network :public_network
   end
 
 end
