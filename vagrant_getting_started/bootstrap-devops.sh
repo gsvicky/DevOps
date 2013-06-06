@@ -38,12 +38,14 @@ git config --global user.email "gsvicky@gmail.com"
 cd /usr/local/src/
 git clone https://github.com/gsvicky/DevOps.git
 
-# Install & configure Chef-client
+# Install & configure knife, chef-solo and Chef-client
 ##############################################################################
 true && curl -L https://www.opscode.com/chef/install.sh | bash
+mkdir -p ~/.chef/
+cp /vagrant/knife.rb ~/.chef/
 mkdir -p /etc/chef/
-cp /vagrant/knife.rb /etc/chef/
-cp /vagrant/knife.rb /etc/chef/client.rb
+cp /vagrant/solo.rb /etc/chef/
+cp /vagrant/knifeuser.pem /etc/chef/client.pem
 cp /vagrant/adeptize-validator.pem /etc/chef/
 
 # For convenience, create a link to the src folder in home
