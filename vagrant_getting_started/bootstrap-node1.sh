@@ -23,5 +23,6 @@ cp /vagrant/adeptize-validator.pem /etc/chef/
 
 ###TODO:
 # Create a chef role to host a sample web app
+# Setup a nexus repo
 # Create a cloud AMI and make it a chef-client
 
