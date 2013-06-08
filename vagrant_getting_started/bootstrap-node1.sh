@@ -15,17 +15,14 @@ yum -y erase facter
 ##############################################################################
 true && curl -L https://www.opscode.com/chef/install.sh | bash
 mkdir -p /etc/chef/
-cp /vagrant/knife.rb /etc/chef/
-cp /vagrant/knife.rb /etc/chef/client.rb
+cp /vagrant/node1.rb /etc/chef/client.rb
 cp /vagrant/adeptize-validator.pem /etc/chef/
 
 
 
 
 ###TODO:
-# How to download code from chef server?
-
-# give a different eht0 ip to vm or use eth1
-
 # Create a chef role to host a sample web app
+# Setup a nexus repo
 # Create a cloud AMI and make it a chef-client
+

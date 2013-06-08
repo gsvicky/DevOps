@@ -38,12 +38,14 @@ git config --global user.email "gsvicky@gmail.com"
 cd /usr/local/src/
 git clone https://github.com/gsvicky/DevOps.git
 
-# Install & configure Chef-client
+# Install & configure knife, chef-solo and Chef-client
 ##############################################################################
 true && curl -L https://www.opscode.com/chef/install.sh | bash
+mkdir -p ~/.chef/
+cp /vagrant/knife.rb ~/.chef/
 mkdir -p /etc/chef/
-cp /vagrant/knife.rb /etc/chef/
-cp /vagrant/knife.rb /etc/chef/client.rb
+cp /vagrant/solo.rb /etc/chef/
+cp /vagrant/knifeuser.pem /etc/chef/client.pem
 cp /vagrant/adeptize-validator.pem /etc/chef/
 
 # For convenience, create a link to the src folder in home
@@ -61,4 +63,39 @@ rm -rf /opt/temp/
 #### cp  -f ~/.ssh/id_rsa.pub /vagrant/ 
 #### Add key in Github.com
 #### ssh -T git@github.com
+#### knife environment from file /vagrant/temp/dev-environment.json
+#### knife role from file /vagrant/temp/base.rb
+#### knife role from file /vagrant/temp/webserver.rb
+#### knife role from file /vagrant/temp/db-master.rb
+#### knife cookbook site install cron
+#### knife cookbook site install chef-client
+#### knife cookbook site install apache2
+#### knife cookbook site install build-essential
+#### knife cookbook site install dmg
+#### knife cookbook site install yum
+#### knife cookbook site install chef_handler
+#### knife cookbook site install windows
+#### knife cookbook site install runit
+#### knife cookbook site install git
+#### knife cookbook site install logrotate
+#### knife cookbook site install openssl
+#### knife cookbook site install mysql
+#### knife cookbook site install ntp
+#### knife cookbook site install sudo
+
+#### knife cookbook upload cron
+#### knife cookbook upload chef-client
+#### knife cookbook upload apache2
+#### knife cookbook upload build-essential
+#### knife cookbook upload dmg
+#### knife cookbook upload yum
+#### knife cookbook upload chef_handler
+#### knife cookbook upload windows
+#### knife cookbook upload runit
+#### knife cookbook upload git
+#### knife cookbook upload logrotate
+#### knife cookbook upload openssl
+#### knife cookbook upload mysql
+#### knife cookbook upload ntp
+#### knife cookbook upload sudo
 ##############################################################################

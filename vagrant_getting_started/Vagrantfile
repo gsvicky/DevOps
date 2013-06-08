@@ -7,23 +7,30 @@ Vagrant.configure("2") do |config|
     devops.vm.box = "centosbox"
     devops.vm.provision :shell, :path => "bootstrap-devops.sh"
     devops.vm.hostname = "devops"
-    devops.vm.usable_port_range = 2222..2222
+    devops.vm.network :forwarded_port, guest: 22, host: 2200, id: "ssh", auto_correct: false
     devops.vm.network :private_network, ip: "192.168.20.200"
   end
 
   config.vm.define :node1 do |node1|
     node1.vm.box = "centosbox"
-    node1.vm.provision :shell, :path => "bootstrap-node.sh"
     node1.vm.hostname = "node1"
-    node1.vm.usable_port_range = 2201..2201
+    node1.vm.network :forwarded_port, guest: 22, host: 2201, id: "ssh", auto_correct: false
     node1.vm.network :private_network, ip: "192.168.20.201"
+
+    node1.vm.provision :chef_client do |chef|
+      chef.chef_server_url = "https://api.opscode.com/organizations/adeptize"
+      chef.validation_client_name = "adeptize-validator"
+      chef.validation_key_path = "adeptize-validator.pem"
+      chef.environment = "dev"
+      chef.add_role "devops"
+    end
   end
 
   config.vm.define :node2 do |node2|
     node2.vm.box = "centosbox"
-    node2.vm.provision :shell, :path => "bootstrap-node.sh"
+    node2.vm.provision :shell, :path => "bootstrap-node2.sh"
     node2.vm.hostname = "node2"
-    node2.vm.usable_port_range = 2202..2202
+    node2.vm.network :forwarded_port, guest: 22, host: 2202, id: "ssh", auto_correct: false
     node2.vm.network :private_network, ip: "192.168.20.202"
     #node2.vm.network :public_network
   end
