@@ -63,10 +63,12 @@ rm -rf /opt/temp/
 #### cp  -f ~/.ssh/id_rsa.pub /vagrant/ 
 #### Add key in Github.com
 #### ssh -T git@github.com
+
 #### knife environment from file /vagrant/temp/dev-environment.json
 #### knife role from file /vagrant/temp/base.rb
 #### knife role from file /vagrant/temp/webserver.rb
 #### knife role from file /vagrant/temp/db-master.rb
+#### knife role from file /vagrant/temp/devops.rb
 #### knife cookbook site install cron
 #### knife cookbook site install chef-client
 #### knife cookbook site install apache2
