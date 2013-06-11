@@ -5,6 +5,7 @@ function lll { ls -al $1 | more; }
 cd /etc/yum.repos.d/
 yum -y install traceroute
 mkdir /opt/temp/
+yum -y install telnet
 
 # cleanup unnecesary rpm
 ##############################################################################
@@ -51,6 +52,7 @@ cp /vagrant/adeptize-validator.pem /etc/chef/
 # For convenience, create a link to the src folder in home
 ##############################################################################
 ln -s /usr/local/src/DevOps/configManagement/chef-repo ~/chefdir
+ln -s /usr/local/src/DevOps ~/gitdir
 
 # Cleanup
 ##############################################################################

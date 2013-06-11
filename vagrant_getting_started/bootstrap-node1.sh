@@ -1,7 +1,7 @@
 # Custom settings
 ##############################################################################
-echo "export PS1='\[\033[02;34m\]\u@\H:\[\033[02;37m\]\w\$\[\033[00m\] '" >> ~/.bash_profile
-function lll { ls -al $1 | more; }
+#echo "export PS1='\[\033[02;34m\]\u@\H:\[\033[02;37m\]\w\$\[\033[00m\] '" >> ~/.bash_profile
+#function lll { ls -al $1 | more; }
 #yum -y install traceroute
 
 
