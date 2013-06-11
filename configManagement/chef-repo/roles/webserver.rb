@@ -10,6 +10,6 @@ default_attributes(
 override_attributes()
 run_list(
   "role[base]",
-  "recipe[apache2::default]",
-  "recipe[apache2::mod_ssl]"
+  "recipe[tomcat]",
+  "recipe[deployapp]"
 )

@@ -74,6 +74,8 @@ rm -rf /opt/temp/
 #### knife cookbook site install cron
 #### knife cookbook site install chef-client
 #### knife cookbook site install apache2
+#### knife cookbook site install java
+#### knife cookbook site install tomcat
 #### knife cookbook site install build-essential
 #### knife cookbook site install dmg
 #### knife cookbook site install yum
@@ -86,10 +88,13 @@ rm -rf /opt/temp/
 #### knife cookbook site install mysql
 #### knife cookbook site install ntp
 #### knife cookbook site install sudo
+#### knife cookbook site install magic_shell
 
 #### knife cookbook upload cron
 #### knife cookbook upload chef-client
 #### knife cookbook upload apache2
+#### knife cookbook upload java
+#### knife cookbook upload tomcat
 #### knife cookbook upload build-essential
 #### knife cookbook upload dmg
 #### knife cookbook upload yum
@@ -102,4 +107,7 @@ rm -rf /opt/temp/
 #### knife cookbook upload mysql
 #### knife cookbook upload ntp
 #### knife cookbook upload sudo
+#### knife cookbook upload magic_shell
+#### knife cookbook upload custom_setup
+#### knife cookbook upload deployapp
 ##############################################################################
