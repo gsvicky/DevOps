@@ -1,5 +1,5 @@
 current_dir = File.dirname(__FILE__)
-log_level                :info
+log_level                :debug
 log_location             STDOUT
 node_name                "knifeuser"
 cache_options( :path => "#{ENV['HOME']}/.chef/checksums" )

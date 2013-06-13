@@ -3,9 +3,9 @@
 echo "export PS1='\[\033[02;32m\]\u@\H:\[\033[02;36m\]\w\$\[\033[00m\] '" >> ~/.bash_profile
 function lll { ls -al $1 | more; }
 cd /etc/yum.repos.d/
-yum -y install traceroute
+#yum -y install traceroute
 mkdir /opt/temp/
-yum -y install telnet
+#yum -y install telnet
 
 # cleanup unnecesary rpm
 ##############################################################################

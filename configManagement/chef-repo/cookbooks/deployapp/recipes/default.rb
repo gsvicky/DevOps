@@ -7,6 +7,11 @@
 # All rights reserved - Do Not Redistribute
 #
 
-execute "cp -f /vagrant/sample.war $CATALINA_HOME/webapps/" do
+#deploy the sample app
+cookbook_file "/var/lib/tomcat6/webapps/sample.war" do
+  source "sample.war"
+  mode 0755
+  owner "root"
+  group "root"
 end
 

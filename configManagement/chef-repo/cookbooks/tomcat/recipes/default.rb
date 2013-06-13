@@ -1,3 +1,5 @@
+
+
 #
 # Cookbook Name:: tomcat
 # Recipe:: default
@@ -162,3 +164,9 @@ unless node['tomcat']["truststore_file"].nil?
     mode "0644"
   end
 end
+
+service "turn iptables off" do
+  service_name "iptables"
+  action [:stop, :disable]
+end
+

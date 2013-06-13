@@ -8,6 +8,7 @@ Vagrant.configure("2") do |config|
     devops.vm.provision :shell, :path => "bootstrap-devops.sh"
     devops.vm.hostname = "devops"
     devops.vm.network :forwarded_port, guest: 22, host: 2200, id: "ssh", auto_correct: false
+    devops.vm.network :forwarded_port, guest: 8080, host: 12120, id: "tcp", auto_correct: false
     devops.vm.network :private_network, ip: "192.168.20.200"
   end
 
@@ -15,7 +16,7 @@ Vagrant.configure("2") do |config|
     node1.vm.box = "centosbox"
     node1.vm.hostname = "node1"
     node1.vm.network :forwarded_port, guest: 22, host: 2201, id: "ssh", auto_correct: false
-    node1.vm.network :forwarded_port, guest: 1212, host: 8080, id: "tcp", auto_correct: false
+    node1.vm.network :forwarded_port, guest: 8080, host: 1212, id: "tcp", auto_correct: false
     node1.vm.network :private_network, ip: "192.168.20.201"
 
     node1.vm.provision :chef_client do |chef|
