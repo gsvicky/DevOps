@@ -44,3 +44,26 @@ when "mac_os_x"
 else
   package "git"
 end
+
+#Setup user and pull code
+execute "Set user name" do
+  command "git config --global user.name \"Victor Gajendran\""
+  action :run
+end
+
+execute "Set user email" do
+  command "git config --global user.email \"gsvicky@gmail.com\""
+  action :run
+end
+
+execute "Pull code" do
+  command "git clone https://github.com/gsvicky/DevOps.git"
+  cwd "/usr/local/src/"
+  action :run
+  not_if { ::File.exists?("/usr/local/src/DevOps")}
+end
+
+
+
+
+

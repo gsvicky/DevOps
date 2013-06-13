@@ -4,5 +4,6 @@ default_attributes()
 override_attributes()
 run_list(
   "role[base]",
-  "recipe[git]"
+  "recipe[git]",
+  "recipe[devops-setup]"
 )

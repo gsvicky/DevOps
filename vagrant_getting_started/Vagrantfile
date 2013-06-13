@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
     node1.vm.box = "centosbox"
     node1.vm.hostname = "node1"
     node1.vm.network :forwarded_port, guest: 22, host: 2201, id: "ssh", auto_correct: false
-    node1.vm.network :forwarded_port, guest: 8080, host: 1212, id: "tcp", auto_correct: false
+    node1.vm.network :forwarded_port, guest: 8080, host: 12121, id: "tcp", auto_correct: false
     node1.vm.network :private_network, ip: "192.168.20.201"
 
     node1.vm.provision :chef_client do |chef|
@@ -30,11 +30,18 @@ Vagrant.configure("2") do |config|
 
   config.vm.define :node2 do |node2|
     node2.vm.box = "centosbox"
-    node2.vm.provision :shell, :path => "bootstrap-node2.sh"
     node2.vm.hostname = "node2"
     node2.vm.network :forwarded_port, guest: 22, host: 2202, id: "ssh", auto_correct: false
+    node2.vm.network :forwarded_port, guest: 8080, host: 12122, id: "tcp", auto_correct: false
     node2.vm.network :private_network, ip: "192.168.20.202"
-    #node2.vm.network :public_network
+
+    node2.vm.provision :chef_client do |chef|
+      chef.chef_server_url = "https://api.opscode.com/organizations/adeptize"
+      chef.validation_client_name = "adeptize-validator"
+      chef.validation_key_path = "adeptize-validator.pem"
+      chef.environment = "dev"
+      chef.add_role "devops"
+    end
   end
 
 end
