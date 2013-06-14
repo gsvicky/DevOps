@@ -64,12 +64,12 @@ end
 
 #For convenience, create a link to the src folder in home
 execute "Create chef link" do
-  command "ln -s /usr/local/src/DevOps/configManagement/chef-repo ~/chefdir"
+  command "ln -sf /usr/local/src/DevOps/configManagement/chef-repo ~/chefdir"
   action :run
 end
 
 execute "Create git link" do
-  command "ln -s /usr/local/src/DevOps ~/gitdir"
+  command "ln -sf /usr/local/src/DevOps ~/gitdir"
   action :run
 end
 

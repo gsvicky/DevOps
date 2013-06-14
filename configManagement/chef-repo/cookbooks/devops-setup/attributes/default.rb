@@ -3,7 +3,7 @@
 # Attributes:: default
 #
 
-default["devops-setup"]["log-level"] = ":debug"
+default["devops-setup"]["log-level"] = ":info"
 default["devops-setup"]["node-name"] = "#{ENV['HOSTNAME']}"
 default["devops-setup"]["cookbook-path"] = "/usr/local/src/DevOps/configManagement/chef-repo/cookbooks"
 default["devops-setup"]["validation_client_name"] = "adeptize-validator"
