@@ -1,0 +1,15 @@
+current_dir = File.dirname(__FILE__)
+log_level                <%= node["devops-setup"]["knife"]["log-level"] %>
+log_location             STDOUT
+node_name                "<%= node["devops-setup"]["knife"]["node-name"] %>"
+validation_client_name   "<%= node["devops-setup"]["validation_client_name"] %>"
+validation_key           "<%= node["devops-setup"]["validation_key"] %>"
+client_key               "<%= node["devops-setup"]["knife"]["client_key"] %>"
+chef_server_url          "<%= node["devops-setup"]["chef_server_url"] %>"
+cache_type               'BasicFile'
+cache_options( :path => "\#{ENV['HOME']}/.chef/checksums" )
+cookbook_path            ["<%= node["devops-setup"]["cookbook-path"] %>"]
+knife[:aws_access_key_id] = "\#{ENV['AWS_ACCESS_KEY_ID']}"
+knife[:aws_secret_access_key] = "\#{ENV['AWS_SECRET_ACCESS_KEY']}"
+knife[:region] = "\#{ENV['EC2_REGION']}"
+knife[:availability_zone] = "\#{ENV['EC2_AVAILABILITY_ZONE']}"

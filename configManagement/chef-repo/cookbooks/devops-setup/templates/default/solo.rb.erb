@@ -1,0 +1,6 @@
+current_dir = File.dirname(__FILE__)
+log_level                <%= node["devops-setup"]["solo"]["log-level"] %>
+log_location             STDOUT
+node_name                "<%= node["devops-setup"]["node-name"] %>"
+cache_options( :path => "\#{ENV['HOME']}/.chef/checksums" )
+cookbook_path            ["<%= node["devops-setup"]["cookbook-path"] %>"]
