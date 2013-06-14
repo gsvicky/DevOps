@@ -1,1 +1,2 @@
-* Create a web server role, apply to a node, deploy sample web app
+# Setup a nexus repo
+# Create a cloud AMI and make it a chef-client

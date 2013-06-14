@@ -5,11 +5,18 @@ Vagrant.configure("2") do |config|
 
   config.vm.define :devops do |devops|
     devops.vm.box = "centosbox"
-    devops.vm.provision :shell, :path => "bootstrap-devops.sh"
     devops.vm.hostname = "devops"
     devops.vm.network :forwarded_port, guest: 22, host: 2200, id: "ssh", auto_correct: false
     devops.vm.network :forwarded_port, guest: 8080, host: 12120, id: "tcp", auto_correct: false
     devops.vm.network :private_network, ip: "192.168.20.200"
+
+    devops.vm.provision :chef_client do |chef|
+      chef.chef_server_url = "https://api.opscode.com/organizations/adeptize"
+      chef.validation_client_name = "adeptize-validator"
+      chef.validation_key_path = "adeptize-validator.pem"
+      chef.environment = "dev"
+      chef.add_role "devops"
+    end
   end
 
   config.vm.define :node1 do |node1|
@@ -28,21 +35,14 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  config.vm.define :node2 do |node2|
-    node2.vm.box = "centosbox"
-    node2.vm.hostname = "node2"
-    node2.vm.network :forwarded_port, guest: 22, host: 2202, id: "ssh", auto_correct: false
-    node2.vm.network :forwarded_port, guest: 8080, host: 12122, id: "tcp", auto_correct: false
-    node2.vm.network :private_network, ip: "192.168.20.202"
-
-    node2.vm.provision :chef_client do |chef|
-      chef.chef_server_url = "https://api.opscode.com/organizations/adeptize"
-      chef.validation_client_name = "adeptize-validator"
-      chef.validation_key_path = "adeptize-validator.pem"
-      chef.environment = "dev"
-      chef.add_role "devops"
-    end
-  end
+#  config.vm.define :olddevops do |olddevops|
+#    olddevops.vm.box = "centosbox"
+#    olddevops.vm.provision :shell, :path => "bootstrap-devops.sh"
+#    olddevops.vm.hostname = "devops"
+#    olddevops.vm.network :forwarded_port, guest: 22, host: 2209, id: "ssh", auto_correct: false
+#    olddevops.vm.network :forwarded_port, guest: 8080, host: 12129, id: "tcp", auto_correct: false
+#    olddevops.vm.network :private_network, ip: "192.168.20.209"
+#  end
 
 end
 

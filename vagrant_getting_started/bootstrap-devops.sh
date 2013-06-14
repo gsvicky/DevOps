@@ -71,45 +71,22 @@ rm -rf /opt/temp/
 #### knife role from file /vagrant/temp/webserver.rb
 #### knife role from file /vagrant/temp/db-master.rb
 #### knife role from file /vagrant/temp/devops.rb
-#### knife cookbook site install cron
 #### knife cookbook site install chef-client
-#### knife cookbook site install apache2
-#### knife cookbook site install java
 #### knife cookbook site install tomcat
-#### knife cookbook site install build-essential
-#### knife cookbook site install dmg
-#### knife cookbook site install yum
 #### knife cookbook site install chef_handler
-#### knife cookbook site install windows
-#### knife cookbook site install runit
 #### knife cookbook site install git
-#### knife cookbook site install logrotate
-#### knife cookbook site install openssl
-#### knife cookbook site install mysql
-#### knife cookbook site install ntp
-#### knife cookbook site install sudo
 #### knife cookbook site install magic_shell
+#### knife cookbook site install java  1.9.0
+#### knife cookbook site install artifact 1.6.0
+#### knife cookbook site install  windows  1.8.0
+#### knife cookbook site install nexus
 
-#### knife cookbook upload cron
-#### knife cookbook upload chef-client
-#### knife cookbook upload apache2
-#### knife cookbook upload java
-#### knife cookbook upload tomcat
-#### knife cookbook upload build-essential
-#### knife cookbook upload dmg
-#### knife cookbook upload yum
-#### knife cookbook upload chef_handler
-#### knife cookbook upload windows
-#### knife cookbook upload runit
-#### knife cookbook upload git
-#### knife cookbook upload logrotate
-#### knife cookbook upload openssl
-#### knife cookbook upload mysql
-#### knife cookbook upload ntp
-#### knife cookbook upload sudo
-#### knife cookbook upload magic_shell
-#### knife cookbook upload custom_setup
-#### knife cookbook upload deployapp
+#### knife cookbook upload chef-client --include-dependencies
+#### knife cookbook upload tomcat --include-dependencies
+#### knife cookbook upload chef_handler --include-dependencies
+#### knife cookbook upload git --include-dependencies
+#### knife cookbook upload magic_shell --include-dependencies
+#### knife cookbook upload custom_setup --include-dependencies
+#### knife cookbook upload deployapp --include-dependencies
+#### knife cookbook upload nexus --include-dependencies
 ##############################################################################
-#[build-essential, chef-client, chef_handler, cron, custom-setup, dev
-#ops-setup, dmg, git, logrotate, magic_shell, ohai, runit, windows, yum]
