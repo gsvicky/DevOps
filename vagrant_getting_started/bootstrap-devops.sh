@@ -111,3 +111,5 @@ rm -rf /opt/temp/
 #### knife cookbook upload custom_setup
 #### knife cookbook upload deployapp
 ##############################################################################
+#[build-essential, chef-client, chef_handler, cron, custom-setup, dev
+#ops-setup, dmg, git, logrotate, magic_shell, ohai, runit, windows, yum]

@@ -22,6 +22,13 @@ template "#{ENV['HOME']}/.chef/knife.rb" do
   mode "0644"
 end
 
+cookbook_file "#{ENV['HOME']}/.chef/knifeuser.pem" do
+  source "knifeuser.pem"
+  mode 0755
+  owner "root"
+  group "root"
+end
+
 directory "/etc/chef/" do
   mode 00775
   owner "root"
@@ -34,14 +41,18 @@ template "/etc/chef/solo.rb" do
   source "solo.rb.erb"
   owner "root"
   group "root"
-  mode "0644"
+  mode "0755"
 end
 
-cookbook_file "/etc/chef/client.pem" do
-  source "knifeuser.pem"
-  mode 0755
+file "/etc/chef/client.rb" do
+  action :delete
+end
+
+template "/etc/chef/client.rb" do
+  source "client.rb.erb"
   owner "root"
   group "root"
+  mode "0755"
 end
 
 cookbook_file "/etc/chef/adeptize-validator.pem" do
