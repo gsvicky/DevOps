@@ -1,2 +1,2 @@
-# Setup a nexus repo
 # Create a cloud AMI and make it a chef-client
+# Setup a nexus repo
